@@ -1,16 +1,20 @@
 package com.code.desafio.appAlineC.model.service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.code.desafio.appAlineC.model.domain.Atrativo;
+import com.code.desafio.appAlineC.model.repository.AtrativoRepository;
 
 @Service 
 public class AtrativoService {
 	
+	@Autowired
+	private AtrativoRepository atrativoRepository;
+	
+	/*
 	private static List<Atrativo> colecaoAtrat = new ArrayList<Atrativo>(
 			Arrays.asList(
 					new Atrativo("Pedra Bonita", "Natural"),
@@ -18,21 +22,25 @@ public class AtrativoService {
 					new Atrativo("Santa Teresa", "Cultural"),
 					new Atrativo("Copacabana", "Praia")
 					)
-			);
+			); */
 		
 	public List<Atrativo> obterLista() {		
-		return colecaoAtrat;
+		return (List<Atrativo>) atrativoRepository.findAll();
 	}
+	
 	public void incluir(Atrativo atrativo) {
-		colecaoAtrat.add(atrativo);
+		atrativoRepository.save(atrativo);
+		
 	}
 	
 	public void excluir(Integer id) {
-		colecaoAtrat.remove(colecaoAtrat.get(id-1));
+		atrativoRepository.deleteById(id);
+		//colecaoAtrat.remove(colecaoAtrat.get(id-1));
 	}
 	
 	public Atrativo obterPorId(Integer id) {
-		return colecaoAtrat.get(id-1);
+		return atrativoRepository.findById(id).orElse(null);
+		//return colecaoAtrat.get(id-1);
 	}
 		
 }

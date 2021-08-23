@@ -34,13 +34,13 @@
 		      </tr>
 		    </thead>
 		    <tbody>		    
-				 <c:forEach  var="locais" items="${atratives}" varStatus="id" >
+				 <c:forEach  var="locais" items="${atratives}" >
 				    <tr>
-				      <td>${id.count}</td>
+				      <td>${locais.id}</td>
 				      <td>${locais.nome}</td>
 				      <td>${locais.tipo}</td>
-				      <td><a href="/rio_atrativos/${id.count}/excluir" >Excluir</a></td>
-				      <td><a href="/rio_atrativos/descrever" >Detalhar</a></td>
+				      <td><a href="/rio_atrativos/${locais.id}/excluir" >Excluir</a></td>
+				      <td><a href="/rio_atrativos/${locais.id}/consultar" >Consultar</a></td>
 				    </tr>
 				 </c:forEach> 	      
 		    </tbody>		    
