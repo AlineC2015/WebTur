@@ -44,10 +44,11 @@ public class AtrativoControl {
 		return obterLista(model);
 	}	
 	
-	@GetMapping(value = "/rio_atrativos/{id}consultar")
-	public String consultar() {
-		
-		return "redirect:/rio_atrativos";
+	@GetMapping(value = "/rio_atrativos/{id}/consultar")
+	public String consultar(Model model, @PathVariable Integer id ) {
+		Atrativo atrativo = atrativoService.obterPorId(id);
+		model.addAttribute("Atrat", atrativo);
+		return telaCadastro();
 	}	
 	
 	@GetMapping(value = "/rio_atrativos/listaAt")	
@@ -56,4 +57,10 @@ public class AtrativoControl {
 		model.addAttribute("atratives", atrativoService.obterLista());		
 		return "rio_atrativos/listaAt";
 	}
+	
+	@GetMapping(value = "/voltar")	
+	public String voltar(){	
+		return "redirect:/rio_atrativos/listaAt";
+	}
+	
 }

@@ -13,21 +13,33 @@
 </head>
 <body>
 		<c:import url= "/WEB-INF/jsp/menu.jsp" />
+		
+		<c:set var="titulo" value= "Cadastramento de Atrativos" />
+		<c:set var="rota" value= "/rio_atrativos/incluir" />
+		<c:set var="metodo" value= "post" />
+		<c:set var="botao" value= "Cadastrar" />
+		
+		<c:if test="${not empty Atrat}">
+			<c:set var="titulo" value= "Consulta de Atrativos" />
+			<c:set var="rota" value= "/voltar" />
+			<c:set var="metodo" value= "get" />
+			<c:set var="botao" value= "Voltar" />			
+		</c:if>
 				
 	<div class="container">
   		
-		<h4>Cadastramento de Atrativos</h4>
+		<h4>${titulo}</h4>
 
-		<form action="/rio_atrativos/incluir" method="post">
+		<form action="${rota}" method="${metodo}">
 			<div class="form-group">
 				<label>Nome:</label> 
-				<input type="text" class="form-control" placeholder="Insira o nome do Atrativo" name="nome">
+				<input type="text" class="form-control" value="${Atrat.nome}" placeholder="Insira o nome do Atrativo" name="nome">
 			</div>
 			<div class="form-group">
 				<label>Tipo do Atrativo:</label> 
-				<input type="text" class="form-control" placeholder="Insira o tipo do Atrativo" name="tipo">
+				<input type="text" class="form-control" value="${Atrat.tipo}" placeholder="Insira o tipo do Atrativo" name="tipo">
 			</div>
-			<button type="submit" class="btn btn-default">Cadastrar</button>
+			<button type="submit" class="btn btn-default">"${botao}"</button>
 		</form>
 
 	</div> 
